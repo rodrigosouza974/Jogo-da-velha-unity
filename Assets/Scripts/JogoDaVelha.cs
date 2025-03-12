@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // Para TextMeshPro
+using TMPro;
+using System; // Para TextMeshPro
 
 
 public class JogoDaVelha : MonoBehaviour
 {
     public Button[] botoes; // Array com os 9 botões do tabuleiro
-    private string jogadorAtual = "X"; // Define qual jogador inicia
-
+    public string jogadorAtual = "X"; // Define qual jogador inicia
+    public TextMeshProUGUI playerIndicationScreen;
     void Start()
     {
         // Adiciona eventos aos botões
@@ -32,6 +33,7 @@ public class JogoDaVelha : MonoBehaviour
                 return;
             }
             jogadorAtual = (jogadorAtual == "X") ? "O" : "X"; // Alterna jogadores
+            AtualizarJogador(jogadorAtual);
         }
     }
 
@@ -65,6 +67,11 @@ public class JogoDaVelha : MonoBehaviour
         {
             botao.GetComponentInChildren<TMP_Text>().text = "";
         }
-        jogadorAtual = "X"; // Reinicia com X
+        jogadorAtual = ""; // Reinicia com X
+    }
+    void AtualizarJogador(string jogadorAtual)
+    {
+        String jogadorAtualizar = jogadorAtual;
+       playerIndicationScreen.text = "player's turn: " + jogadorAtualizar ;
     }
 }
